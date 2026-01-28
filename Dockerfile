@@ -1,12 +1,7 @@
-FROM node:14
+FROM php:8.1-apache
 
-WORKDIR /code
+RUN docker-php-ext-install mysqli
 
-COPY package.json /code/package.json
-COPY package-lock.json /code/package-lock.json
+COPY . /var/www/html/
 
-RUN npm install
-
-COPY . /code
-
-CMD ["npm", "run", "dev"]
+EXPOSE 80
